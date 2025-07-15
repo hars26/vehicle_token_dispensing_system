@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Valet Parking System</title>
+    <style>
+        body {
+            background-image: url('tb2.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .container {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <center>
+            <h1>VALET PARKING SYSTEM</h1>
+            <small>Enter the vehicle number</small><br><br>
+
+            <form method="post" action="receive.php">
+                <table class="table table-bordered">
+                    <tr>
+                        <td><b><label for="vehicle_number">VEHICLE NUMBER:</label></b></td>
+                        <td><input type="text" id="vehicle_number" name="vehicle_number" class="form-control" required></td>
+                    </tr>
+                    <tr>
+                        <td><b><label for="vehicle_type">VEHICLE TYPE:</label></b></td>
+                        <td><input type="text" id="vehicle_type" name="vehicle_type" class="form-control" required></td>
+                    </tr>
+                </table>
+                <div class="form-group">
+                    <button type="submit" name="mysubmit" class="btn btn-primary active">Park Vehicle</button>
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                </div>
+            </form>
+        </center>
+    </div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Choice</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background-image: url('https://cdn.dribbble.com/users/2118336/screenshots/12113942/media/ec72a5e052af7792a64a1f3fd156af28.gif');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-family: Arial, sans-serif;
+    }
+</style>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1 class="mb-4">Parking Choice</h1>
+            <button id="entryButton" class="btn btn-primary mx-2">Entry</button>
+            <button id="exitButton" class="btn btn-secondary mx-2">Exit</button>
+            <button id="adminButton" class="btn btn-danger mx-2">Admin</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script>
+    $(document).ready(function(){
+        var entryLink = "Gautham/main.html";  // Replace with your entry link
+        var exitLink = "Gautham/leave.html";    // Replace with your exit link
+        var adminLink = "Harshini/main.html";  // Replace with your admin link
+
+        $('#entryButton').click(function(){
+            window.location.href = entryLink;
+        });
+
+        $('#exitButton').click(function(){
+            window.location.href = exitLink;
+        });
+
+        $('#adminButton').click(function(){
+            window.location.href = adminLink;
+        });
+    });
+</script>
+</body>
+</html>

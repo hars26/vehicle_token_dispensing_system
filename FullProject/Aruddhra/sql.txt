@@ -1,0 +1,12 @@
+CREATE DATABASE Carriageps;
+
+USE Carriageps;
+
+CREATE TABLE parking_lot (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    carriage_number INT NOT NULL,
+    space_number INT NOT NULL,
+    vehicle_number VARCHAR(20) NOT NULL,
+    vehicle_type ENUM('four_wheeler', 'two_wheeler') NOT NULL,
+    UNIQUE(carriage_number, space_number)
+);

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+        font-family: Arial, sans-serif;
+    }
+
+    .space {
+        width: 400px;
+        background-color: #ddd;
+        border: 10px solid #999;
+        border-radius: 10px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .floor {
+        width: 99%;
+        opacity: 1;
+        transition: height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+        height: 100px; /* Initial height */
+        border: 2px solid #090909; /* Border style */
+        border-radius: 5px; /* Rounded corners */
+        margin-bottom: 10px; /* Spacing between floors */
+        position: relative; /* Ensure proper stacking of grid items */
+        overflow: hidden; /* Hide overflow content */
+    }
+
+    .floor.active {
+        height: auto; /* Expanded height to fit content */
+        margin-bottom: 10px; /* Adjust spacing after expanding */
+    }
+
+    .floor-content {
+        text-align: center;
+        padding: 17px;
+    }
+
+    .floor-number {
+        cursor: pointer;
+        background-color: #3498db;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin-top: 10px;
+        text-align: center;
+    }
+    
+    .floor-number:hover {
+        background-color: #2980b9;
+    }
+
+    /* Grid animation styles */
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 90px);
+        gap: 10px;
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+
+    .grid-item {
+        background-color: #7c7e80;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        border-radius: 5px;
+        animation: move 3s infinite alternate;
+    }
+
+    .grid-item.occupied {
+        background-color: #e74c3c; /* Red background for occupied item */
+    }
+
+    @keyframes move {
+        0% {
+            transform: translateY(0);
+        }
+        100% {
+            transform: translateY(-20px);
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="space">
+        <div class="floor active">
+            <div class="floor-content">
+                <h2>Floor 1</h2>
+                <p>Floor 1.</p>
+                <div class="grid-container">
+                    <div class="grid-item">1</div>
+                    <div class="grid-item">2</div>
+                    <div class="grid-item">3</div>
+                    <div class="grid-item">4</div>
+                    <div class="grid-item">5</div>
+                    <div class="grid-item">6</div>
+                </div>
+            </div>
+        </div>
+        <div class="floor">
+            <div class="floor-content">
+                <h2>Floor 2</h2>
+                <p>Floor 2.</p>
+                <div class="grid-container">
+                    <div class="grid-item">1</div>
+                    <div class="grid-item">2</div>
+                    <div class="grid-item">3</div>
+                    <div class="grid-item">4</div>
+                    <div class="grid-item">5</div>
+                    <div class="grid-item">6</div>
+                </div>
+            </div>
+        </div>
+        <div class="floor">
+            <div class="floor-content">
+                <h2>Floor 3</h2>
+                <p>Floor 3.</p>
+                <div class="grid-container">
+                    <div class="grid-item">1</div>
+                    <div class="grid-item">2</div>
+                    <div class="grid-item">3</div>
+                    <div class="grid-item">4</div>
+                    <div class="grid-item">5</div>
+                    <div class="grid-item">6</div>
+                </div>
+            </div>
+        </div>
+        <div class="floor-number" onclick="toggleFloor(1)">Floor 1</div>
+        <div class="floor-number" onclick="toggleFloor(2)">Floor 2</div>
+        <div class="floor-number" onclick="toggleFloor(3)">Floor 3</div>
+
+        <!-- Vehicle parking form -->
+        <div style="margin-top: 20px;">
+            <label for="vehicleNumber">Enter Vehicle Number:</label>
+            <input type="text" id="vehicleNumber">
+            <button onclick="parkVehicle()">Park</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleFloor(floorIndex) {
+            const floors = document.querySelectorAll('.floor');
+            
+            // Toggle active class for the clicked floor
+            floors.forEach((floor, index) => {
+                if (index === floorIndex - 1) {
+                    floor.classList.add('active');
+                } else {
+                    floor.classList.remove('active');
+                }
+            });
+        }
+
+        function parkVehicle() {
+            const activeFloor = document.querySelector('.floor.active');
+            const gridItems = activeFloor.querySelectorAll('.grid-item');
+            const vehicleNumber = document.getElementById('vehicleNumber').value.trim();
+
+            // Find the first available grid item
+            for (let i = 0; i < gridItems.length; i++) {
+                if (!gridItems[i].classList.contains('occupied')) {
+                    gridItems[i].innerText = vehicleNumber;
+                    gridItems[i].classList.add('occupied');
+                    alert(`Vehicle ${vehicleNumber} parked successfully.`);
+                    return; // Exit the function after parking
+                }
+            }
+
+            // If no available space is found
+            alert('No available parking space on this floor.');
+        }
+    </script>
+</body>
+</html>
